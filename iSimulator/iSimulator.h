@@ -11,6 +11,7 @@
 #import "iDevice.h"
 @interface iSimulator : NSObject
 + (instancetype)shared;
++ (NSString*)simulatorPath;
 - (NSDictionary*)simulatorData;
 //- (NSString *)getDevicePath:(iSandBox *)sandbox;
 @end

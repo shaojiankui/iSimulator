@@ -14,6 +14,7 @@
 		B8439D5B1E5EAF28003AFADF /* iDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = B8439D5A1E5EAF28003AFADF /* iDevice.m */; };
 		B8439D5E1E5EB9E3003AFADF /* BaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B8439D5D1E5EB9E3003AFADF /* BaseModel.m */; };
 		B8439D601E5EBCD7003AFADF /* iSimulator.png in Resources */ = {isa = PBXBuildFile; fileRef = B8439D5F1E5EBCD7003AFADF /* iSimulator.png */; };
+		B8439D661E5EC12A003AFADF /* DirectoryWatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = B8439D651E5EC12A003AFADF /* DirectoryWatcher.m */; };
 		B8A1DDE21E5C05CC00765FD6 /* iSimulator@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B8A1DDE11E5C05CC00765FD6 /* iSimulator@2x.png */; };
 		B8A1DDEA1E5C094200765FD6 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8A1DDE91E5C094200765FD6 /* MainMenu.xib */; };
 		B8A1DE141E5C0ED000765FD6 /* AboutWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8A1DE111E5C0ED000765FD6 /* AboutWindowController.m */; };
@@ -40,6 +41,8 @@
 		B8439D5C1E5EB9E3003AFADF /* BaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseModel.h; sourceTree = "<group>"; };
 		B8439D5D1E5EB9E3003AFADF /* BaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseModel.m; sourceTree = "<group>"; };
 		B8439D5F1E5EBCD7003AFADF /* iSimulator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iSimulator.png; sourceTree = "<group>"; };
+		B8439D641E5EC12A003AFADF /* DirectoryWatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DirectoryWatcher.h; sourceTree = "<group>"; };
+		B8439D651E5EC12A003AFADF /* DirectoryWatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DirectoryWatcher.m; sourceTree = "<group>"; };
 		B8A1DDE11E5C05CC00765FD6 /* iSimulator@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iSimulator@2x.png"; sourceTree = "<group>"; };
 		B8A1DDE91E5C094200765FD6 /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
 		B8A1DE081E5C0E7400765FD6 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -177,6 +180,8 @@
 			children = (
 				B8A1DE1C1E5C120C00765FD6 /* STPrivilegedTask.h */,
 				B8A1DE1D1E5C120C00765FD6 /* STPrivilegedTask.m */,
+				B8439D641E5EC12A003AFADF /* DirectoryWatcher.h */,
+				B8439D651E5EC12A003AFADF /* DirectoryWatcher.m */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -266,6 +271,7 @@
 				B8A1DE191E5C0EDB00765FD6 /* PreferencesWindowController.m in Sources */,
 				B82A91441E5C005C00D195AA /* main.m in Sources */,
 				B8439D5B1E5EAF28003AFADF /* iDevice.m in Sources */,
+				B8439D661E5EC12A003AFADF /* DirectoryWatcher.m in Sources */,
 				B82A91411E5C005C00D195AA /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

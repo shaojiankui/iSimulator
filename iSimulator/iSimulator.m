@@ -33,6 +33,9 @@
     }
     return self;
 }
++ (NSString*)simulatorPath{
+    return SIMULATOR_PATH;
+}
 - (NSDictionary*)simulatorData
 {
 //    NSMutableArray *items = [NSMutableArray array];

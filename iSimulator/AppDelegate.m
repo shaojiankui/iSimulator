@@ -15,6 +15,7 @@
 #import "iMenuItem.h"
 #import "iAPP.h"
 #import "iDevice.h"
+#import "DirectoryWatcher.h"
 @interface AppDelegate ()<NSMenuDelegate>
 
 @end
@@ -24,14 +25,20 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     // Insert code here to initialize your application
     self.statusItem.menu = self.mainMenu;
+    [DirectoryWatcher directoryDidChange:^(DirectoryWatcher *folderWatcher,NSString *watcherPath) {
+        NSLog(@"changge");
+        [[DirectoryWatcher sharedWatcher] cancleWithPath:watcherPath];
+        [self showDeviceList];
+    }];
     [self showDeviceList];
 }
 - (void)showDeviceList{
+    
     NSDictionary *data = [[iSimulator shared] simulatorData];
+    [self.mainMenu  removeAllItems];
     [self.mainMenu insertItem:[NSMenuItem separatorItem] atIndex:0];
 
     NSMutableArray *apps = [NSMutableArray array];
-    
     for (NSInteger i = 0; i < [[data allKeys] count]; i++) {
         iDeviceGroup *deviceGroup = [[data allValues] objectAtIndex:i];
 
@@ -58,7 +65,7 @@
                             appSubMenuItem.device = device;
                             [appSubMenuItem setTarget:self];
                             [appSubMenuItem setAction:@selector(gotoSandBox:)];
-                            appSubMenuItem.title = app.appName;
+                            appSubMenuItem.title = app.appName?:@"";
                             [sandboxMenuItem.submenu addItem:appSubMenuItem];
                         }
                     }
@@ -75,19 +82,42 @@
     }];
     
     for (int i=0;i<[apps count]; i++) {
-        iAPP *app = [apps objectAtIndex:i];
-        if (i == 5) {
+        if (5-i>=[apps count]) {
+            continue;
+        }
+        if (5-i ==0) {
             break;
         }
+        iAPP *app = [apps objectAtIndex:5-i];
         iMenuItem *appSubMenuItem = [[iMenuItem alloc] init];
         appSubMenuItem.app = app;
         [appSubMenuItem setTarget:self];
         [appSubMenuItem setAction:@selector(gotoSandBox:)];
-        appSubMenuItem.title = app.appName;
+        appSubMenuItem.title = app.appName?:@"";
         [self.statusItem.menu insertItem:appSubMenuItem atIndex:0];
     }
     [self.statusItem.menu insertItem:[NSMenuItem separatorItem] atIndex:0];
+    
+    [self beginDirectotyWatcher:data];
 
+ 
+}
+- (void)beginDirectotyWatcher:(NSDictionary*)data{
+    [DirectoryWatcher watchFolderWithPath:[iSimulator simulatorPath]];
+
+    for (NSInteger i = 0; i < [[data allKeys] count]; i++) {
+        iDeviceGroup *deviceGroup = [[data allValues] objectAtIndex:i];
+        
+            for (iDevice *device in deviceGroup.items) {
+                //具体模拟器
+                [DirectoryWatcher watchFolderWithPath:[[iSimulator simulatorPath] stringByAppendingPathComponent:device.udid]];
+                [DirectoryWatcher watchFolderWithPath:[[[iSimulator simulatorPath] stringByAppendingPathComponent:device.udid] stringByAppendingPathComponent:@"data"]];
+                [DirectoryWatcher watchFolderWithPath:[[[iSimulator simulatorPath] stringByAppendingPathComponent:device.udid] stringByAppendingPathComponent:@"data/Containers/Bundle/Application"]];
+//                for (iAPP *app in device.items) {
+//
+//                }
+            }
+        }
 }
 - (void)gotoSandBox:(iMenuItem*)item{
     if (!item.title.length) return ;
