@@ -15,6 +15,7 @@
 		B8439D5E1E5EB9E3003AFADF /* BaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B8439D5D1E5EB9E3003AFADF /* BaseModel.m */; };
 		B8439D601E5EBCD7003AFADF /* iSimulator.png in Resources */ = {isa = PBXBuildFile; fileRef = B8439D5F1E5EBCD7003AFADF /* iSimulator.png */; };
 		B8439D661E5EC12A003AFADF /* DirectoryWatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = B8439D651E5EC12A003AFADF /* DirectoryWatcher.m */; };
+		B8439D691E5EDC3D003AFADF /* ITSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = B8439D681E5EDC3D003AFADF /* ITSwitch.m */; };
 		B8A1DDE21E5C05CC00765FD6 /* iSimulator@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B8A1DDE11E5C05CC00765FD6 /* iSimulator@2x.png */; };
 		B8A1DDEA1E5C094200765FD6 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8A1DDE91E5C094200765FD6 /* MainMenu.xib */; };
 		B8A1DE141E5C0ED000765FD6 /* AboutWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8A1DE111E5C0ED000765FD6 /* AboutWindowController.m */; };
@@ -43,6 +44,8 @@
 		B8439D5F1E5EBCD7003AFADF /* iSimulator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iSimulator.png; sourceTree = "<group>"; };
 		B8439D641E5EC12A003AFADF /* DirectoryWatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DirectoryWatcher.h; sourceTree = "<group>"; };
 		B8439D651E5EC12A003AFADF /* DirectoryWatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DirectoryWatcher.m; sourceTree = "<group>"; };
+		B8439D671E5EDC3D003AFADF /* ITSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITSwitch.h; sourceTree = "<group>"; };
+		B8439D681E5EDC3D003AFADF /* ITSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITSwitch.m; sourceTree = "<group>"; };
 		B8A1DDE11E5C05CC00765FD6 /* iSimulator@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iSimulator@2x.png"; sourceTree = "<group>"; };
 		B8A1DDE91E5C094200765FD6 /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
 		B8A1DE081E5C0E7400765FD6 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -138,6 +141,8 @@
 		B82A91541E5C019D00D195AA /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B8439D671E5EDC3D003AFADF /* ITSwitch.h */,
+				B8439D681E5EDC3D003AFADF /* ITSwitch.m */,
 				B8A1DE251E5C198200765FD6 /* iMenuItem.h */,
 				B8A1DE261E5C198200765FD6 /* iMenuItem.m */,
 				B8A1DE2E1E5C390400765FD6 /* iMenu.h */,
@@ -262,6 +267,7 @@
 			files = (
 				B82A91521E5C011400D195AA /* iSimulator.m in Sources */,
 				B8A1DE2D1E5C362700765FD6 /* iDeviceGroup.m in Sources */,
+				B8439D691E5EDC3D003AFADF /* ITSwitch.m in Sources */,
 				B8A1DE141E5C0ED000765FD6 /* AboutWindowController.m in Sources */,
 				B8A1DE1E1E5C120C00765FD6 /* STPrivilegedTask.m in Sources */,
 				B8A1DE271E5C198200765FD6 /* iMenuItem.m in Sources */,

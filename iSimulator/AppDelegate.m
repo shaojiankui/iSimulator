@@ -26,18 +26,33 @@
     // Insert code here to initialize your application
     self.statusItem.menu = self.mainMenu;
     [DirectoryWatcher directoryDidChange:^(DirectoryWatcher *folderWatcher,NSString *watcherPath) {
-        NSLog(@"changge");
+        NSLog(@"change");
         [[DirectoryWatcher sharedWatcher] cancleWithPath:watcherPath];
         [self showDeviceList];
     }];
     [self showDeviceList];
 }
+- (void)addBottomMennu{
+    [self.statusItem.menu addItem:[NSMenuItem separatorItem]];
+    NSMenuItem *aboutItem  = [[NSMenuItem alloc] initWithTitle:@"About iSimulators" action:@selector(aboutItemTouched:) keyEquivalent:@"a"];
+    aboutItem.target = self;
+    [self.statusItem.menu addItem:aboutItem];
+    
+    NSMenuItem *preferencesItem  = [[NSMenuItem alloc] initWithTitle:@"Preferences..." action:@selector(preferencesItemTouched:) keyEquivalent:@","];
+    preferencesItem.target = self;
+    [self.statusItem.menu addItem:preferencesItem];
+    
+    [self.statusItem.menu addItem:[NSMenuItem separatorItem]];
+    NSMenuItem *exitItem  = [[NSMenuItem alloc] initWithTitle:@"Quit iSimulators" action:@selector(exitItemTouched:) keyEquivalent:@"q"];
+    exitItem.target = self;
+    [self.statusItem.menu addItem:exitItem];
+    [self.mainMenu addItem:[NSMenuItem separatorItem]];
+}
 - (void)showDeviceList{
     
     NSDictionary *data = [[iSimulator shared] simulatorData];
-    [self.mainMenu  removeAllItems];
-    [self.mainMenu insertItem:[NSMenuItem separatorItem] atIndex:0];
-
+    [self.statusItem.menu  removeAllItems];
+    
     NSMutableArray *apps = [NSMutableArray array];
     for (NSInteger i = 0; i < [[data allKeys] count]; i++) {
         iDeviceGroup *deviceGroup = [[data allValues] objectAtIndex:i];
@@ -98,8 +113,8 @@
     }
     [self.statusItem.menu insertItem:[NSMenuItem separatorItem] atIndex:0];
     
+    [self addBottomMennu];
     [self beginDirectotyWatcher:data];
-
  
 }
 - (void)beginDirectotyWatcher:(NSDictionary*)data{
@@ -157,20 +172,6 @@
 - (NSMenu *)mainMenu{
     if (!_mainMenu) {
         _mainMenu = [[NSMenu alloc] initWithTitle:@"xxxx"];
-        
-        NSMenuItem *aboutItem  = [[NSMenuItem alloc] initWithTitle:@"About iSimulators" action:@selector(aboutItemTouched:) keyEquivalent:@"a"];
-        aboutItem.target = self;
-        [_mainMenu addItem:aboutItem];
-        
-        NSMenuItem *preferencesItem  = [[NSMenuItem alloc] initWithTitle:@"Preferences..." action:@selector(preferencesItemTouched:) keyEquivalent:@","];
-        preferencesItem.target = self;
-        [_mainMenu addItem:preferencesItem];
-        
-        [_mainMenu addItem:[NSMenuItem separatorItem]];
-        
-        NSMenuItem *exitItem  = [[NSMenuItem alloc] initWithTitle:@"Quit iSimulators" action:@selector(exitItemTouched:) keyEquivalent:@"q"];
-        exitItem.target = self;
-        [_mainMenu addItem:exitItem];
         _mainMenu.delegate = self;
     }
     return _mainMenu;

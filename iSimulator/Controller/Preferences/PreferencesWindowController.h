@@ -7,7 +7,8 @@
 //
 
 #import <Cocoa/Cocoa.h>
-
+#import "ITSwitch.h"
 @interface PreferencesWindowController : NSWindowController
+@property (weak) IBOutlet ITSwitch *itSwitch;
 
 @end
