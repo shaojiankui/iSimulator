@@ -7,13 +7,14 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "iSandBox.h"
+#import "iDevice.h"
+#import "iDeviceGroup.h"
 #import "iAPP.h"
 #import "iDevice.h"
 
 @interface iMenu : NSMenu
 @property (assign,nonatomic) NSInteger index;
+@property (strong,nonatomic) iDeviceGroup *deviceGroup;
 @property (strong,nonatomic) iDevice *device;
-@property (strong,nonatomic) iSandBox *sandbox;
 @property (strong,nonatomic) iAPP *app;
 @end

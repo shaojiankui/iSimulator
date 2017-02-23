@@ -11,6 +11,9 @@
 		B82A91441E5C005C00D195AA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B82A91431E5C005C00D195AA /* main.m */; };
 		B82A91461E5C005C00D195AA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B82A91451E5C005C00D195AA /* Assets.xcassets */; };
 		B82A91521E5C011400D195AA /* iSimulator.m in Sources */ = {isa = PBXBuildFile; fileRef = B82A91511E5C011400D195AA /* iSimulator.m */; };
+		B8439D5B1E5EAF28003AFADF /* iDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = B8439D5A1E5EAF28003AFADF /* iDevice.m */; };
+		B8439D5E1E5EB9E3003AFADF /* BaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B8439D5D1E5EB9E3003AFADF /* BaseModel.m */; };
+		B8439D601E5EBCD7003AFADF /* iSimulator.png in Resources */ = {isa = PBXBuildFile; fileRef = B8439D5F1E5EBCD7003AFADF /* iSimulator.png */; };
 		B8A1DDE21E5C05CC00765FD6 /* iSimulator@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B8A1DDE11E5C05CC00765FD6 /* iSimulator@2x.png */; };
 		B8A1DDEA1E5C094200765FD6 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8A1DDE91E5C094200765FD6 /* MainMenu.xib */; };
 		B8A1DE141E5C0ED000765FD6 /* AboutWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8A1DE111E5C0ED000765FD6 /* AboutWindowController.m */; };
@@ -18,10 +21,9 @@
 		B8A1DE191E5C0EDB00765FD6 /* PreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8A1DE171E5C0EDB00765FD6 /* PreferencesWindowController.m */; };
 		B8A1DE1A1E5C0EDB00765FD6 /* PreferencesWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8A1DE181E5C0EDB00765FD6 /* PreferencesWindowController.xib */; };
 		B8A1DE1E1E5C120C00765FD6 /* STPrivilegedTask.m in Sources */ = {isa = PBXBuildFile; fileRef = B8A1DE1D1E5C120C00765FD6 /* STPrivilegedTask.m */; };
-		B8A1DE241E5C158400765FD6 /* iSandBox.m in Sources */ = {isa = PBXBuildFile; fileRef = B8A1DE231E5C158400765FD6 /* iSandBox.m */; };
 		B8A1DE271E5C198200765FD6 /* iMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = B8A1DE261E5C198200765FD6 /* iMenuItem.m */; };
 		B8A1DE2A1E5C32AC00765FD6 /* iAPP.m in Sources */ = {isa = PBXBuildFile; fileRef = B8A1DE291E5C32AC00765FD6 /* iAPP.m */; };
-		B8A1DE2D1E5C362700765FD6 /* iDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = B8A1DE2C1E5C362700765FD6 /* iDevice.m */; };
+		B8A1DE2D1E5C362700765FD6 /* iDeviceGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = B8A1DE2C1E5C362700765FD6 /* iDeviceGroup.m */; };
 		B8A1DE301E5C390400765FD6 /* iMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = B8A1DE2F1E5C390400765FD6 /* iMenu.m */; };
 /* End PBXBuildFile section */
 
@@ -33,6 +35,11 @@
 		B82A914A1E5C005C00D195AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B82A91501E5C011400D195AA /* iSimulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iSimulator.h; sourceTree = "<group>"; };
 		B82A91511E5C011400D195AA /* iSimulator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iSimulator.m; sourceTree = "<group>"; };
+		B8439D591E5EAF28003AFADF /* iDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iDevice.h; sourceTree = "<group>"; };
+		B8439D5A1E5EAF28003AFADF /* iDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iDevice.m; sourceTree = "<group>"; };
+		B8439D5C1E5EB9E3003AFADF /* BaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseModel.h; sourceTree = "<group>"; };
+		B8439D5D1E5EB9E3003AFADF /* BaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseModel.m; sourceTree = "<group>"; };
+		B8439D5F1E5EBCD7003AFADF /* iSimulator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iSimulator.png; sourceTree = "<group>"; };
 		B8A1DDE11E5C05CC00765FD6 /* iSimulator@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iSimulator@2x.png"; sourceTree = "<group>"; };
 		B8A1DDE91E5C094200765FD6 /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
 		B8A1DE081E5C0E7400765FD6 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -44,14 +51,12 @@
 		B8A1DE181E5C0EDB00765FD6 /* PreferencesWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PreferencesWindowController.xib; sourceTree = "<group>"; };
 		B8A1DE1C1E5C120C00765FD6 /* STPrivilegedTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STPrivilegedTask.h; sourceTree = "<group>"; };
 		B8A1DE1D1E5C120C00765FD6 /* STPrivilegedTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STPrivilegedTask.m; sourceTree = "<group>"; };
-		B8A1DE221E5C158400765FD6 /* iSandBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iSandBox.h; sourceTree = "<group>"; };
-		B8A1DE231E5C158400765FD6 /* iSandBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iSandBox.m; sourceTree = "<group>"; };
 		B8A1DE251E5C198200765FD6 /* iMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iMenuItem.h; sourceTree = "<group>"; };
 		B8A1DE261E5C198200765FD6 /* iMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iMenuItem.m; sourceTree = "<group>"; };
 		B8A1DE281E5C32AC00765FD6 /* iAPP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iAPP.h; sourceTree = "<group>"; };
 		B8A1DE291E5C32AC00765FD6 /* iAPP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iAPP.m; sourceTree = "<group>"; };
-		B8A1DE2B1E5C362700765FD6 /* iDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iDevice.h; sourceTree = "<group>"; };
-		B8A1DE2C1E5C362700765FD6 /* iDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iDevice.m; sourceTree = "<group>"; };
+		B8A1DE2B1E5C362700765FD6 /* iDeviceGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iDeviceGroup.h; sourceTree = "<group>"; };
+		B8A1DE2C1E5C362700765FD6 /* iDeviceGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iDeviceGroup.m; sourceTree = "<group>"; };
 		B8A1DE2E1E5C390400765FD6 /* iMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iMenu.h; sourceTree = "<group>"; };
 		B8A1DE2F1E5C390400765FD6 /* iMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iMenu.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -95,6 +100,7 @@
 				B8A1DE081E5C0E7400765FD6 /* AppDelegate.h */,
 				B82A91401E5C005C00D195AA /* AppDelegate.m */,
 				B8A1DDE11E5C05CC00765FD6 /* iSimulator@2x.png */,
+				B8439D5F1E5EBCD7003AFADF /* iSimulator.png */,
 				B82A91451E5C005C00D195AA /* Assets.xcassets */,
 				B82A914A1E5C005C00D195AA /* Info.plist */,
 				B8A1DDE91E5C094200765FD6 /* MainMenu.xib */,
@@ -114,12 +120,14 @@
 		B82A91531E5C019D00D195AA /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				B8A1DE221E5C158400765FD6 /* iSandBox.h */,
-				B8A1DE231E5C158400765FD6 /* iSandBox.m */,
 				B8A1DE281E5C32AC00765FD6 /* iAPP.h */,
 				B8A1DE291E5C32AC00765FD6 /* iAPP.m */,
-				B8A1DE2B1E5C362700765FD6 /* iDevice.h */,
-				B8A1DE2C1E5C362700765FD6 /* iDevice.m */,
+				B8A1DE2B1E5C362700765FD6 /* iDeviceGroup.h */,
+				B8A1DE2C1E5C362700765FD6 /* iDeviceGroup.m */,
+				B8439D591E5EAF28003AFADF /* iDevice.h */,
+				B8439D5A1E5EAF28003AFADF /* iDevice.m */,
+				B8439D5C1E5EB9E3003AFADF /* BaseModel.h */,
+				B8439D5D1E5EB9E3003AFADF /* BaseModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -233,6 +241,7 @@
 			files = (
 				B82A91461E5C005C00D195AA /* Assets.xcassets in Resources */,
 				B8A1DE151E5C0ED000765FD6 /* AboutWindowController.xib in Resources */,
+				B8439D601E5EBCD7003AFADF /* iSimulator.png in Resources */,
 				B8A1DDE21E5C05CC00765FD6 /* iSimulator@2x.png in Resources */,
 				B8A1DE1A1E5C0EDB00765FD6 /* PreferencesWindowController.xib in Resources */,
 				B8A1DDEA1E5C094200765FD6 /* MainMenu.xib in Resources */,
@@ -247,16 +256,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				B82A91521E5C011400D195AA /* iSimulator.m in Sources */,
-				B8A1DE2D1E5C362700765FD6 /* iDevice.m in Sources */,
+				B8A1DE2D1E5C362700765FD6 /* iDeviceGroup.m in Sources */,
 				B8A1DE141E5C0ED000765FD6 /* AboutWindowController.m in Sources */,
 				B8A1DE1E1E5C120C00765FD6 /* STPrivilegedTask.m in Sources */,
 				B8A1DE271E5C198200765FD6 /* iMenuItem.m in Sources */,
 				B8A1DE2A1E5C32AC00765FD6 /* iAPP.m in Sources */,
+				B8439D5E1E5EB9E3003AFADF /* BaseModel.m in Sources */,
 				B8A1DE301E5C390400765FD6 /* iMenu.m in Sources */,
 				B8A1DE191E5C0EDB00765FD6 /* PreferencesWindowController.m in Sources */,
 				B82A91441E5C005C00D195AA /* main.m in Sources */,
+				B8439D5B1E5EAF28003AFADF /* iDevice.m in Sources */,
 				B82A91411E5C005C00D195AA /* AppDelegate.m in Sources */,
-				B8A1DE241E5C158400765FD6 /* iSandBox.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

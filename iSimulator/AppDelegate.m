@@ -11,7 +11,7 @@
 #import "PreferencesWindowController.h"
 
 #import "iSimulator.h"
-#import "iSandBox.h"
+#import "iDeviceGroup.h"
 #import "iMenuItem.h"
 #import "iAPP.h"
 #import "iDevice.h"
@@ -30,33 +30,36 @@
     NSDictionary *data = [[iSimulator shared] simulatorData];
     [self.mainMenu insertItem:[NSMenuItem separatorItem] atIndex:0];
 
+    NSMutableArray *apps = [NSMutableArray array];
+    
     for (NSInteger i = 0; i < [[data allKeys] count]; i++) {
-        iDevice *device = [[data allValues] objectAtIndex:i];
+        iDeviceGroup *deviceGroup = [[data allValues] objectAtIndex:i];
 
-        if (device.appCount >0) {
+        if (deviceGroup.appCount >0) {
             iMenuItem *deviceubMenuItem = [[iMenuItem alloc] init];
-            deviceubMenuItem.device = device;
+            deviceubMenuItem.deviceGroup = deviceGroup;
             [deviceubMenuItem setTarget:self];
-            deviceubMenuItem.title = device.name;
+            deviceubMenuItem.title = deviceGroup.name;
             deviceubMenuItem.submenu = [[NSMenu alloc]init];
             
-            for (iSandBox *sandbox in device.items) {
-                if ([sandbox.items count]>0) {
+            for (iDevice *device in deviceGroup.items) {
+                if ([device.items count]>0) {
                     iMenuItem *sandboxMenuItem = [[iMenuItem alloc] init];
-                    sandboxMenuItem.sandbox = sandbox;
+                    sandboxMenuItem.device = device;
                     [sandboxMenuItem setTarget:self];
-                    sandboxMenuItem.title = sandbox.boxName;
+                    sandboxMenuItem.title = device.boxName;
                     sandboxMenuItem.submenu = [[NSMenu alloc]init];
                     
-                    if ([sandbox.items count]>0) {
-                        for (iAPP *app in sandbox.items) {
+                    if ([device.items count]>0) {
+                        for (iAPP *app in device.items) {
+                            [apps addObject:app];
                             iMenuItem *appSubMenuItem = [[iMenuItem alloc] init];
                             appSubMenuItem.app = app;
-                            appSubMenuItem.sandbox = sandbox;
+                            appSubMenuItem.device = device;
                             [appSubMenuItem setTarget:self];
                             [appSubMenuItem setAction:@selector(gotoSandBox:)];
                             appSubMenuItem.title = app.appName;
-                            [sandboxMenuItem.submenu addItem:appSubMenuItem];;
+                            [sandboxMenuItem.submenu addItem:appSubMenuItem];
                         }
                     }
                     [deviceubMenuItem.submenu addItem:sandboxMenuItem];
@@ -66,11 +69,30 @@
         }
     }
 
+    [self.statusItem.menu insertItem:[NSMenuItem separatorItem] atIndex:0];
+    [apps sortUsingComparator:^NSComparisonResult(iAPP *  _Nonnull obj1, iAPP *  _Nonnull obj2) {
+        return obj1.modifyDate < obj2.modifyDate;
+    }];
+    
+    for (int i=0;i<[apps count]; i++) {
+        iAPP *app = [apps objectAtIndex:i];
+        if (i == 5) {
+            break;
+        }
+        iMenuItem *appSubMenuItem = [[iMenuItem alloc] init];
+        appSubMenuItem.app = app;
+        [appSubMenuItem setTarget:self];
+        [appSubMenuItem setAction:@selector(gotoSandBox:)];
+        appSubMenuItem.title = app.appName;
+        [self.statusItem.menu insertItem:appSubMenuItem atIndex:0];
+    }
+    [self.statusItem.menu insertItem:[NSMenuItem separatorItem] atIndex:0];
+
 }
 - (void)gotoSandBox:(iMenuItem*)item{
     if (!item.title.length) return ;
  
-    [self openFinderWithFilePath:item.app.appPath];
+    [self openFinderWithFilePath:item.app.appSandBoxPath];
 }
 - (void)openFinderWithFilePath:(NSString *)path{
     if (!path.length) {

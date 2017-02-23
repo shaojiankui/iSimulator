@@ -8,9 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import <Cocoa/Cocoa.h>
-#import "iSandBox.h"
+#import "iDevice.h"
 @interface iSimulator : NSObject
 + (instancetype)shared;
 - (NSDictionary*)simulatorData;
-- (NSString *)getDevicePath:(iSandBox *)sandbox;
+//- (NSString *)getDevicePath:(iSandBox *)sandbox;
 @end

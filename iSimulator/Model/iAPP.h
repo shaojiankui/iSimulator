@@ -8,7 +8,17 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface iAPP : NSMenuItem
+@interface iAPP : NSObject
 @property (copy,nonatomic) NSString *appName;
-@property (copy,nonatomic) NSString *appPath;
+@property (copy,nonatomic) NSString *appBundlePath;
+@property (copy,nonatomic) NSString *appSandBoxPath;
+
+@property (copy,nonatomic) NSString *bundleID;
+@property (copy,nonatomic) NSString *UUID;
+@property (copy,nonatomic) NSString *version;
+@property (copy,nonatomic) NSString *build;
+@property (copy,nonatomic) NSString *appIcon;
+@property (assign,nonatomic) long long modifyDate;
+
+
 @end

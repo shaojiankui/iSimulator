@@ -7,7 +7,8 @@
 //
 
 #import "iSimulator.h"
-#import "iSandBox.h"
+
+#import "iDeviceGroup.h"
 #import "iDevice.h"
 #define SIMULATOR_PATH [NSString stringWithFormat:@"%@/Library/Developer/CoreSimulator/Devices/", RealHomeDirectory()]
 
@@ -45,18 +46,18 @@
         
         NSString *boxName = [NSString stringWithFormat:@"%@ > (%@)",device, version];
         
-        iSandBox *box = [[iSandBox alloc] init];
+        iDevice *box = [[iDevice alloc] init];
         if ([dict valueForKeyPath:@"UDID"]) {
             box.udid = dict[@"UDID"];
         }
         box.boxName = boxName;
         box.version = version;
         box.deviceName = device;
-        box.items = [self projectsWithBox:box];
+        box.items = [self appsWithBox:box];
         
-        iDevice *d;
+        iDeviceGroup *d;
         if (![devices objectForKey:device]) {
-            d = [[iDevice alloc]init];
+            d = [[iDeviceGroup alloc]init];
             d.items  = @[box];
             d.appCount = 0;
             [devices setObject:d forKey:device];
@@ -106,70 +107,62 @@ NSString *RealHomeDirectory() {
     }
     return absolutePath;
 }
-- (NSArray *)projectsWithBox:(iSandBox *)box{
+- (NSArray *)appsWithBox:(iDevice *)device{
     
-    NSString *path = [self getDevicePath:box];
-    NSMutableArray *projectSandBoxPath = [NSMutableArray array];
-    
-    NSArray *paths = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:path error:nil];
-    for (NSString *pathName in paths) {
-        NSString *fileName = [path stringByAppendingPathComponent:pathName];
-        NSString *fileUrl = [self getDataDictPathWithFileName:fileName];
-        
-        NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:fileUrl];
-        if ([dict valueForKeyPath:@"MCMMetadataIdentifier"]) {
-            NSArray *array = [dict[@"MCMMetadataIdentifier"] componentsSeparatedByString:@"."];
-            if (![dict[@"MCMMetadataIdentifier"] hasPrefix:@"com.apple"]) {
-                NSString *projectName = [array lastObject];
-                projectName = [projectName stringByReplacingOccurrencesOfString:@"-" withString:@"_"];
-                iAPP *app = [[iAPP alloc]init];
-                app.appName = projectName;
-                app.appPath = fileName;
-                [projectSandBoxPath addObject:app];
-            }
-        }
-    }
-    
-    
-    return projectSandBoxPath;
-}
-- (NSString *)getDevicePath:(iSandBox *)sandbox{
-    
-    if(![[NSFileManager defaultManager] fileExistsAtPath:SIMULATOR_PATH]){
-        return nil;
-    }
-    
-    NSArray *files = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:SIMULATOR_PATH error:nil];
-        NSString *ApplicationPath = nil;
-    for (NSString *filesPath in files) {
-        NSString *devicePath =  [[SIMULATOR_PATH stringByAppendingPathComponent:filesPath] stringByAppendingPathComponent:SIMULATOR_DEVICE];
-        
-        ApplicationPath =  [[[[[SIMULATOR_PATH stringByAppendingPathComponent:filesPath] stringByAppendingPathComponent:@"data"] stringByAppendingPathComponent:@"Containers"] stringByAppendingPathComponent:@"Data"] stringByAppendingPathComponent:@"Application"];
-        
-        NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:devicePath];
-        
-        if (dict.allKeys.count) {
-            NSRange range = [[dict valueForKeyPath:@"UDID"] rangeOfString:sandbox.udid];
-            if (range.location != NSNotFound) {
-                if (![[NSFileManager defaultManager] fileExistsAtPath:ApplicationPath]) {
-                    ApplicationPath =  [[[SIMULATOR_PATH stringByAppendingPathComponent:filesPath] stringByAppendingPathComponent:@"data"] stringByAppendingPathComponent:@"Applications"];
-                    if (![[NSFileManager defaultManager] fileExistsAtPath:ApplicationPath]) {
-                        return nil;
-                    }
-                }
-                if (!ApplicationPath.length) {
-                     ;
-                    ApplicationPath = [[[SIMULATOR_PATH stringByAppendingPathComponent:filesPath] stringByAppendingPathComponent:@"data"] stringByAppendingPathComponent:@"Applications"];
-                }
-                return ApplicationPath;
-            }
-        }
-    }
-    
-    return ApplicationPath;
-}
-- (NSString *)getDataDictPathWithFileName:(NSString *)fileName{
-    return [fileName stringByAppendingPathComponent:@".com.apple.mobile_container_manager.metadata.plist"];
-}
+    NSString *deviceAppBundlePath = [[SIMULATOR_PATH stringByAppendingPathComponent:device.udid] stringByAppendingPathComponent:@"data/Containers/Bundle/Application"];
 
+    
+    NSMutableArray *appsSandBoxPaths = [NSMutableArray array];
+    
+//    NSArray *paths = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:deviceAppBundlePath error:nil];
+    NSArray *paths = [[NSFileManager defaultManager] contentsOfDirectoryAtURL:[NSURL fileURLWithPath:deviceAppBundlePath] includingPropertiesForKeys:nil options:NSDirectoryEnumerationSkipsSubdirectoryDescendants|NSDirectoryEnumerationSkipsHiddenFiles error:nil];
+
+    for (NSURL *appPathURL in paths) {
+        NSDictionary *infoDict = [self appPlistInfo:[appPathURL absoluteString]];
+        iAPP *app = [[iAPP alloc]init];
+        app.appName =  [infoDict valueForKey:@"CFBundleDisplayName"]?:  [infoDict valueForKey:@"CFBundleName"];
+        app.bundleID = [infoDict valueForKey:@"CFBundleIdentifier"];
+        //                app.UUID = [dict valueForKey:@"MCMMetadataUUID"];
+        app.version = [infoDict valueForKey:@"CFBundleShortVersionString"];
+        app.build = [infoDict valueForKey:@"CFBundleVersion"];
+        app.UUID = device.udid;
+        id modifyDate;
+        [appPathURL getResourceValue:&modifyDate
+                                                  forKey:NSURLContentModificationDateKey
+                                                   error:NULL];
+        app.modifyDate = [modifyDate timeIntervalSince1970];
+        app.appBundlePath = [appPathURL absoluteString];
+        app.appSandBoxPath = [self appSandBoxPath:app];
+        [appsSandBoxPaths addObject:app];
+    }
+    return appsSandBoxPaths;
+}
+-(NSDictionary*)appPlistInfo:(NSString*)appDir{
+    NSArray *enumerator = [[NSFileManager defaultManager] contentsOfDirectoryAtURL:[NSURL URLWithString:appDir] includingPropertiesForKeys:nil options:NSDirectoryEnumerationSkipsSubdirectoryDescendants|NSDirectoryEnumerationSkipsHiddenFiles error:nil];
+    NSURL *appInfoPlist = [enumerator.lastObject URLByAppendingPathComponent:@"Info.plist"];
+    NSDictionary *infoDict = [NSDictionary dictionaryWithContentsOfURL:appInfoPlist];
+    return infoDict;
+}
+- (NSString *)appSandBoxPath:(iAPP *)app
+{
+    NSString *deviceApplicationPath = [[SIMULATOR_PATH stringByAppendingPathComponent:app.UUID] stringByAppendingPathComponent:@"data/Containers/Data/Application"];
+
+    NSArray *paths = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:deviceApplicationPath error:nil];
+    
+    NSString *appPath;
+
+    for (NSString *appPathName in paths) {
+        NSString *p = [deviceApplicationPath stringByAppendingPathComponent:appPathName];
+        
+        NSString *fileUrl = [p stringByAppendingPathComponent:@".com.apple.mobile_container_manager.metadata.plist"];
+
+        NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:fileUrl];
+        if ([[dict valueForKeyPath:@"MCMMetadataIdentifier"] isEqualToString:app.bundleID]){
+            appPath = p;
+            break;
+        }
+    }
+
+    return appPath;
+}
 @end
