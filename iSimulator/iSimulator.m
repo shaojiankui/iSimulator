@@ -10,6 +10,8 @@
 
 #import "iDeviceGroup.h"
 #import "iDevice.h"
+#import "STPrivilegedTask.h"
+#import "iTask.h"
 #define SIMULATOR_PATH [NSString stringWithFormat:@"%@/Library/Developer/CoreSimulator/Devices/", RealHomeDirectory()]
 
 #define SIMULATOR_DEVICE @"device.plist"
@@ -151,9 +153,7 @@ NSString *RealHomeDirectory() {
     NSString *deviceApplicationPath = [[SIMULATOR_PATH stringByAppendingPathComponent:app.UUID] stringByAppendingPathComponent:@"data/Containers/Data/Application"];
 
     NSArray *paths = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:deviceApplicationPath error:nil];
-    
     NSString *appPath;
-
     for (NSString *appPathName in paths) {
         NSString *p = [deviceApplicationPath stringByAppendingPathComponent:appPathName];
         
@@ -167,5 +167,53 @@ NSString *RealHomeDirectory() {
     }
 
     return appPath;
+}
+#pragma mark -- app opration
+- (void)openFinderWithFilePath:(NSString *)path{
+    if (!path.length) {
+        return ;
+    }
+//    NSString *open = [NSString stringWithFormat:@"open %@",path];
+//    const char *str = [open UTF8String];
+//    system(str);
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL fileURLWithPath:path]];
+}
+
+- (void)revealAppInSandbox:(iAPP *)app
+{
+    [self openFinderWithFilePath:app.appSandBoxPath];
+}
+- (void)resetStoreData:(iAPP *)app
+{
+    [self deletePathDataWithOutOwenFolder:[app.appSandBoxPath stringByAppendingPathComponent:@"Documents"]];
+    [self deletePathDataWithOutOwenFolder:[app.appSandBoxPath stringByAppendingPathComponent:@"Library"]];
+    [self deletePathDataWithOutOwenFolder:[app.appSandBoxPath stringByAppendingPathComponent:@"tmp"]];
+}
+- (void)launchInSimulator:(iAPP *)app
+{
+//    [STPrivilegedTask launchedPrivilegedTaskWithLaunchPath:@"/usr/bin/xcrun" arguments:@[@"instruments",@"-w",app.UUID]];
+//    [STPrivilegedTask launchedPrivilegedTaskWithLaunchPath:@"/usr/bin/xcrun" arguments:@[@"simctl",@"launch",@"booted",app.bundleID]];
+    __unused NSString *string =  [iTask excute:@"/usr/bin/xcrun" arguments:@[@"instruments", @"-w", app.UUID]];
+    __unused NSString *string2 =   [iTask excute:@"/usr/bin/xcrun" arguments:@[@"simctl",@"launch",@"booted",app.bundleID]];
+
+    
+}
+- (void)uninstallFromeSimulator:(iAPP *)app{
+    __unused NSString *string =  [iTask excute:@"/usr/bin/xcrun" arguments:@[@"instruments", @"-w", app.UUID]];
+    __unused NSString *string2 =   [iTask excute:@"/usr/bin/xcrun" arguments:@[@"simctl",@"terminate",app.UUID,app.bundleID]];
+    __unused NSString *string3 =   [iTask excute:@"/usr/bin/xcrun" arguments:@[@"simctl",@"uninstall",@"booted",app.bundleID]];
+}
+- (void)deletePathDataWithOutOwenFolder:(NSString*)path{
+    if (!path || path.length<=0) {
+        return;
+    }
+    NSFileManager *defaultManger = [NSFileManager defaultManager];
+    
+    NSArray *contents = [defaultManger contentsOfDirectoryAtPath:path error:NULL];
+    NSEnumerator*e = [contents objectEnumerator];
+    NSString *filename;
+    while ((filename = [e nextObject])) {
+        [defaultManger removeItemAtPath:[path stringByAppendingPathComponent:filename] error:NULL];
+    }
 }
 @end

@@ -33,6 +33,8 @@
 		B8A1DE2A1E5C32AC00765FD6 /* iAPP.m in Sources */ = {isa = PBXBuildFile; fileRef = B8A1DE291E5C32AC00765FD6 /* iAPP.m */; };
 		B8A1DE2D1E5C362700765FD6 /* iDeviceGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = B8A1DE2C1E5C362700765FD6 /* iDeviceGroup.m */; };
 		B8A1DE301E5C390400765FD6 /* iMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = B8A1DE2F1E5C390400765FD6 /* iMenu.m */; };
+		B8C94C771E6001F6009EAD09 /* iTask.m in Sources */ = {isa = PBXBuildFile; fileRef = B8C94C761E6001F6009EAD09 /* iTask.m */; };
+		B8C94C7A1E600C18009EAD09 /* iAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = B8C94C791E600C18009EAD09 /* iAlert.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -92,6 +94,10 @@
 		B8A1DE2C1E5C362700765FD6 /* iDeviceGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iDeviceGroup.m; sourceTree = "<group>"; };
 		B8A1DE2E1E5C390400765FD6 /* iMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iMenu.h; sourceTree = "<group>"; };
 		B8A1DE2F1E5C390400765FD6 /* iMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iMenu.m; sourceTree = "<group>"; };
+		B8C94C751E6001F6009EAD09 /* iTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iTask.h; sourceTree = "<group>"; };
+		B8C94C761E6001F6009EAD09 /* iTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iTask.m; sourceTree = "<group>"; };
+		B8C94C781E600C18009EAD09 /* iAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iAlert.h; sourceTree = "<group>"; };
+		B8C94C791E600C18009EAD09 /* iAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iAlert.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,6 +191,8 @@
 				B8A1DE261E5C198200765FD6 /* iMenuItem.m */,
 				B8A1DE2E1E5C390400765FD6 /* iMenu.h */,
 				B8A1DE2F1E5C390400765FD6 /* iMenu.m */,
+				B8C94C781E600C18009EAD09 /* iAlert.h */,
+				B8C94C791E600C18009EAD09 /* iAlert.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -254,6 +262,8 @@
 				B8A1DE1D1E5C120C00765FD6 /* STPrivilegedTask.m */,
 				B8439D641E5EC12A003AFADF /* DirectoryWatcher.h */,
 				B8439D651E5EC12A003AFADF /* DirectoryWatcher.m */,
+				B8C94C751E6001F6009EAD09 /* iTask.h */,
+				B8C94C761E6001F6009EAD09 /* iTask.m */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -368,8 +378,10 @@
 				B8A1DE2D1E5C362700765FD6 /* iDeviceGroup.m in Sources */,
 				B8439D691E5EDC3D003AFADF /* ITSwitch.m in Sources */,
 				B8A1DE141E5C0ED000765FD6 /* AboutWindowController.m in Sources */,
+				B8C94C7A1E600C18009EAD09 /* iAlert.m in Sources */,
 				B8A1DE1E1E5C120C00765FD6 /* STPrivilegedTask.m in Sources */,
 				B8A1DE271E5C198200765FD6 /* iMenuItem.m in Sources */,
+				B8C94C771E6001F6009EAD09 /* iTask.m in Sources */,
 				B8A1DE2A1E5C32AC00765FD6 /* iAPP.m in Sources */,
 				B8439D5E1E5EB9E3003AFADF /* BaseModel.m in Sources */,
 				B8A1DE301E5C390400765FD6 /* iMenu.m in Sources */,

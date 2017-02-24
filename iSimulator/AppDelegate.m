@@ -16,6 +16,7 @@
 #import "iAPP.h"
 #import "iDevice.h"
 #import "DirectoryWatcher.h"
+#import "iAlert.h"
 @interface AppDelegate ()<NSMenuDelegate>
 
 @end
@@ -27,7 +28,7 @@
     self.statusItem.menu = self.mainMenu;
     [DirectoryWatcher directoryDidChange:^(DirectoryWatcher *folderWatcher,NSString *watcherPath) {
         NSLog(@"change");
-        [[DirectoryWatcher sharedWatcher] cancleWithPath:watcherPath];
+//        [[DirectoryWatcher sharedWatcher] cancleWithPath:watcherPath];
         [self showDeviceList];
     }];
     [self showDeviceList];
@@ -79,8 +80,9 @@
                             appSubMenuItem.app = app;
                             appSubMenuItem.device = device;
                             [appSubMenuItem setTarget:self];
-                            [appSubMenuItem setAction:@selector(gotoSandBox:)];
+                            [appSubMenuItem setAction:@selector(revealInFinderTouched:)];
                             appSubMenuItem.title = app.appName?:@"";
+                            [self appOprationMenu:appSubMenuItem];
                             [sandboxMenuItem.submenu addItem:appSubMenuItem];
                         }
                     }
@@ -107,8 +109,9 @@
         iMenuItem *appSubMenuItem = [[iMenuItem alloc] init];
         appSubMenuItem.app = app;
         [appSubMenuItem setTarget:self];
-        [appSubMenuItem setAction:@selector(gotoSandBox:)];
+        [appSubMenuItem setAction:@selector(revealInFinderTouched:)];
         appSubMenuItem.title = app.appName?:@"";
+        [self appOprationMenu:appSubMenuItem];
         [self.statusItem.menu insertItem:appSubMenuItem atIndex:0];
     }
     [self.statusItem.menu insertItem:[NSMenuItem separatorItem] atIndex:0];
@@ -117,6 +120,63 @@
     [self beginDirectotyWatcher:data];
  
 }
+#pragma mark -- item opraiton
+- (void)appOprationMenu:(iMenuItem*)appSubMenuItem
+{
+//    [menuItem setKeyEquivalentModifierMask: NSShiftKeyMask | NSCommandKeyMask];
+//    [menuItem setKeyEquivalent:@"x"];
+    
+    NSMenu *oprationMenu = [[NSMenu alloc] init];
+    iMenuItem *revealMenuItem = [[iMenuItem alloc]initWithTitle:@"Reveal Sandbox in Finder" action:@selector(revealInFinderTouched:) keyEquivalent:@"f"];
+    [oprationMenu addItem:revealMenuItem];
+    
+    iMenuItem *launchMenuItem = [[iMenuItem alloc]initWithTitle:@"Launch in Simulator" action:@selector(launchInSimulatorTouched:) keyEquivalent:@"l"];
+    [oprationMenu addItem:launchMenuItem];
+
+    iMenuItem *copySandboxMenuItem = [[iMenuItem alloc]initWithTitle:@"Copy Sandbox Path" action:@selector(copySandboxTouched:) keyEquivalent:@"c"];
+    [oprationMenu addItem:copySandboxMenuItem];
+
+    iMenuItem *resetStoreDataMenuItem = [[iMenuItem alloc]initWithTitle:@"Reset Storage Data" action:@selector(resetStoreDataTouched:) keyEquivalent:@"r"];
+    [oprationMenu addItem:resetStoreDataMenuItem];
+    
+    iMenuItem *uninstallFromeSimulatorMenuItem = [[iMenuItem alloc]initWithTitle:@"Uninstall from Simulator" action:@selector(uninstallFromeSimulatorTouched:) keyEquivalent:@"u"];
+    [oprationMenu addItem:uninstallFromeSimulatorMenuItem];
+ 
+    appSubMenuItem.submenu = oprationMenu;
+}
+
+- (void)revealInFinderTouched:(iMenuItem*)menuItem{
+    iMenuItem *appItem = (iMenuItem*)menuItem.parentItem;
+    [[iSimulator shared] revealAppInSandbox:appItem.app];
+}
+- (void)launchInSimulatorTouched:(iMenuItem*)menuItem{
+    iMenuItem *appItem = (iMenuItem*)menuItem.parentItem;
+    [[iSimulator shared] launchInSimulator:appItem.app];
+}
+- (void)copySandboxTouched:(iMenuItem*)menuItem{
+    iMenuItem *appItem = (iMenuItem*)menuItem.parentItem;
+    [[NSPasteboard generalPasteboard] declareTypes:[NSArray arrayWithObject:NSStringPboardType]  owner:self];
+    [[NSPasteboard generalPasteboard] setString:appItem.app.appSandBoxPath forType:NSStringPboardType];
+}
+- (void)resetStoreDataTouched:(iMenuItem*)menuItem{
+    iAlert *alert = [iAlert alertWithTitle:@"Warning" message:@"sure uninstall app?" style:NSAlertStyleWarning];
+    [alert addCommonButtonWithTitle:@"Ok" handler:^(iAlertItem *item) {
+        iMenuItem *appItem = (iMenuItem*)menuItem.parentItem;
+        [[iSimulator shared] resetStoreData:appItem.app];
+    }];
+    [alert addButtonWithTitle:@"Cancle"];
+    [alert show];
+}
+- (void)uninstallFromeSimulatorTouched:(iMenuItem*)menuItem{
+    iAlert *alert = [iAlert alertWithTitle:@"Warning" message:@"sure uninstall app?" style:NSAlertStyleWarning];
+    [alert addCommonButtonWithTitle:@"Ok" handler:^(iAlertItem *item) {
+        iMenuItem *appItem = (iMenuItem*)menuItem.parentItem;
+        [[iSimulator shared] uninstallFromeSimulator:appItem.app];
+    }];
+    [alert addButtonWithTitle:@"Cancle"];
+    [alert show];
+}
+
 - (void)beginDirectotyWatcher:(NSDictionary*)data{
     [DirectoryWatcher watchFolderWithPath:[iSimulator simulatorPath]];
 
@@ -134,18 +194,21 @@
             }
         }
 }
-- (void)gotoSandBox:(iMenuItem*)item{
-    if (!item.title.length) return ;
- 
-    [self openFinderWithFilePath:item.app.appSandBoxPath];
+
+#pragma mark -- MainMenu
+- (void)aboutItemTouched:(NSMenuItem *)item
+{
+    [NSApp activateIgnoringOtherApps:YES];
+    [self.aboutWindowController showWindow:self];
 }
-- (void)openFinderWithFilePath:(NSString *)path{
-    if (!path.length) {
-        return ;
-    }
-    NSString *open = [NSString stringWithFormat:@"open %@",path];
-    const char *str = [open UTF8String];
-    system(str);
+- (void)preferencesItemTouched:(NSMenuItem *)item
+{
+    [NSApp activateIgnoringOtherApps:YES];
+    [self.preferencesWindowController showWindow:self];
+}
+- (void)exitItemTouched:(NSMenuItem *)item
+{
+    [NSApp terminate:self];
 }
 - (NSWindowController *)aboutWindowController{
     if (!_aboutWindowController) {
@@ -175,22 +238,6 @@
         _mainMenu.delegate = self;
     }
     return _mainMenu;
-}
-
-#pragma mark -- MainMenu
-- (void)aboutItemTouched:(NSMenuItem *)item
-{
-    [NSApp activateIgnoringOtherApps:YES];
-    [self.aboutWindowController showWindow:self];
-}
-- (void)preferencesItemTouched:(NSMenuItem *)item
-{
-    [NSApp activateIgnoringOtherApps:YES];
-    [self.preferencesWindowController showWindow:self];
-}
-- (void)exitItemTouched:(NSMenuItem *)item
-{
-    [NSApp terminate:self];
 }
 
 @end

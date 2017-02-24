@@ -14,4 +14,11 @@
 + (NSString*)simulatorPath;
 - (NSDictionary*)simulatorData;
 //- (NSString *)getDevicePath:(iSandBox *)sandbox;
+
+#pragma mark -- app opration
+- (void)openFinderWithFilePath:(NSString *)path;
+- (void)revealAppInSandbox:(iAPP *)app;
+- (void)resetStoreData:(iAPP *)app;
+- (void)launchInSimulator:(iAPP *)app;
+- (void)uninstallFromeSimulator:(iAPP *)app;
 @end
