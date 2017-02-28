@@ -17,6 +17,7 @@
 #import "iDevice.h"
 #import "DirectoryWatcher.h"
 #import "iAlert.h"
+#import <LetsMove/LetsMove.h>
 @interface AppDelegate ()<NSMenuDelegate>
 
 @end
@@ -24,6 +25,8 @@
 @implementation AppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
+    PFMoveToApplicationsFolderIfNecessary();
+    
     // Insert code here to initialize your application
     self.statusItem.menu = self.mainMenu;
     [DirectoryWatcher directoryDidChange:^(DirectoryWatcher *folderWatcher,NSString *watcherPath) {
@@ -159,7 +162,7 @@
     [[NSPasteboard generalPasteboard] setString:appItem.app.appSandBoxPath forType:NSStringPboardType];
 }
 - (void)resetStoreDataTouched:(iMenuItem*)menuItem{
-    iAlert *alert = [iAlert alertWithTitle:@"Warning" message:@"sure uninstall app?" style:NSAlertStyleWarning];
+    iAlert *alert = [iAlert alertWithTitle:@"Warning" message:@"sure reset store data?" style:NSAlertStyleWarning];
     [alert addCommonButtonWithTitle:@"Ok" handler:^(iAlertItem *item) {
         iMenuItem *appItem = (iMenuItem*)menuItem.parentItem;
         [[iSimulator shared] resetStoreData:appItem.app];

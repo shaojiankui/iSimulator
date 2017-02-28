@@ -22,6 +22,10 @@
 		B87BE1B31E5FBAA300656B28 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B87BE1B21E5FBAA300656B28 /* Assets.xcassets */; };
 		B87BE1B61E5FBAA300656B28 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = B87BE1B41E5FBAA300656B28 /* MainMenu.xib */; };
 		B87BE1BC1E5FBB5300656B28 /* iSimulatorHelper.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = B87BE1AA1E5FBAA300656B28 /* iSimulatorHelper.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		B89E9FD71E65663900BB210F /* LetsMove.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B89E9FD61E65663900BB210F /* LetsMove.framework */; };
+		B89E9FD91E65663C00BB210F /* LetsMove.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B89E9FD61E65663900BB210F /* LetsMove.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B89E9FDE1E65671B00BB210F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B89E9FE01E65671B00BB210F /* Localizable.strings */; };
+		B89E9FED1E656B4200BB210F /* MoveApplication.strings in Resources */ = {isa = PBXBuildFile; fileRef = B89E9FEF1E656B4200BB210F /* MoveApplication.strings */; };
 		B8A1DDE21E5C05CC00765FD6 /* iSimulator@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B8A1DDE11E5C05CC00765FD6 /* iSimulator@2x.png */; };
 		B8A1DDEA1E5C094200765FD6 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8A1DDE91E5C094200765FD6 /* MainMenu.xib */; };
 		B8A1DE141E5C0ED000765FD6 /* AboutWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8A1DE111E5C0ED000765FD6 /* AboutWindowController.m */; };
@@ -46,6 +50,17 @@
 			files = (
 				B87BE1BC1E5FBB5300656B28 /* iSimulatorHelper.app in CopyFiles */,
 			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B89E9FDA1E65663C00BB210F /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				B89E9FD91E65663C00BB210F /* LetsMove.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -75,6 +90,14 @@
 		B87BE1B21E5FBAA300656B28 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B87BE1B51E5FBAA300656B28 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		B87BE1B71E5FBAA300656B28 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B89E9FD61E65663900BB210F /* LetsMove.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LetsMove.framework; path = /Users/runlin/Desktop/iSimulator/iSimulator/Vendor/LetsMove.framework; sourceTree = "<absolute>"; };
+		B89E9FDB1E65670300BB210F /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/MainMenu.strings"; sourceTree = "<group>"; };
+		B89E9FDF1E65671B00BB210F /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		B89E9FE11E65671D00BB210F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		B89E9FE21E65671E00BB210F /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		B89E9FEE1E656B4200BB210F /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/MoveApplication.strings; sourceTree = "<group>"; };
+		B89E9FF01E656B4400BB210F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MoveApplication.strings; sourceTree = "<group>"; };
+		B89E9FF11E656B4500BB210F /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/MoveApplication.strings"; sourceTree = "<group>"; };
 		B8A1DDE11E5C05CC00765FD6 /* iSimulator@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iSimulator@2x.png"; sourceTree = "<group>"; };
 		B8A1DDE91E5C094200765FD6 /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
 		B8A1DE081E5C0E7400765FD6 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -106,6 +129,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B87BE1A51E5FB99900656B28 /* ServiceManagement.framework in Frameworks */,
+				B89E9FD71E65663900BB210F /* LetsMove.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -141,6 +165,7 @@
 		B82A913E1E5C005C00D195AA /* iSimulator */ = {
 			isa = PBXGroup;
 			children = (
+				B89E9FD51E65663900BB210F /* Vendor */,
 				B8A1DE1B1E5C120C00765FD6 /* Manager */,
 				B8A1DE091E5C0E8C00765FD6 /* Controller */,
 				B82A91531E5C019D00D195AA /* Model */,
@@ -163,6 +188,7 @@
 			isa = PBXGroup;
 			children = (
 				B82A91431E5C005C00D195AA /* main.m */,
+				B89E9FE01E65671B00BB210F /* Localizable.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -226,6 +252,14 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		B89E9FD51E65663900BB210F /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+				B89E9FEF1E656B4200BB210F /* MoveApplication.strings */,
+			);
+			path = Vendor;
+			sourceTree = "<group>";
+		};
 		B8A1DE091E5C0E8C00765FD6 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -279,6 +313,7 @@
 				B82A91391E5C005C00D195AA /* Frameworks */,
 				B82A913A1E5C005C00D195AA /* Resources */,
 				B87BE1BB1E5FBB3C00656B28 /* CopyFiles */,
+				B89E9FDA1E65663C00BB210F /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -332,6 +367,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = B82A91331E5C005B00D195AA;
 			productRefGroup = B82A913D1E5C005C00D195AA /* Products */;
@@ -351,7 +387,9 @@
 			files = (
 				B82A91461E5C005C00D195AA /* Assets.xcassets in Resources */,
 				B8A1DE151E5C0ED000765FD6 /* AboutWindowController.xib in Resources */,
+				B89E9FED1E656B4200BB210F /* MoveApplication.strings in Resources */,
 				B8439D601E5EBCD7003AFADF /* iSimulator.png in Resources */,
+				B89E9FDE1E65671B00BB210F /* Localizable.strings in Resources */,
 				B8A1DDE21E5C05CC00765FD6 /* iSimulator@2x.png in Resources */,
 				B8A1DE1A1E5C0EDB00765FD6 /* PreferencesWindowController.xib in Resources */,
 				B8A1DDEA1E5C094200765FD6 /* MainMenu.xib in Resources */,
@@ -409,8 +447,29 @@
 			isa = PBXVariantGroup;
 			children = (
 				B87BE1B51E5FBAA300656B28 /* Base */,
+				B89E9FDB1E65670300BB210F /* zh-Hans */,
 			);
 			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		B89E9FE01E65671B00BB210F /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B89E9FDF1E65671B00BB210F /* Base */,
+				B89E9FE11E65671D00BB210F /* en */,
+				B89E9FE21E65671E00BB210F /* zh-Hans */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		B89E9FEF1E656B4200BB210F /* MoveApplication.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B89E9FEE1E656B4200BB210F /* Base */,
+				B89E9FF01E656B4400BB210F /* en */,
+				B89E9FF11E656B4500BB210F /* zh-Hans */,
+			);
+			name = MoveApplication.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -420,6 +479,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -467,6 +527,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -508,6 +569,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/iSimulator/Vendor",
+				);
 				INFOPLIST_FILE = iSimulator/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
@@ -521,6 +586,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/iSimulator/Vendor",
+				);
 				INFOPLIST_FILE = iSimulator/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
