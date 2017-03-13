@@ -9,5 +9,8 @@
 #import <Cocoa/Cocoa.h>
 
 @interface AboutWindowController : NSWindowController
+@property (weak) IBOutlet NSTextField *version;
 
+- (IBAction)githubTouched:(id)sender;
+- (IBAction)blogTouched:(id)sender;
 @end
