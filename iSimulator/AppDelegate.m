@@ -78,6 +78,8 @@
                     
                     if ([device.items count]>0) {
                         for (iAPP *app in device.items) {
+                            app.deviceName = device.deviceName;
+                            app.deviceVersion = device.version;
                             [apps addObject:app];
                             iMenuItem *appSubMenuItem = [[iMenuItem alloc] init];
                             appSubMenuItem.app = app;
@@ -113,7 +115,7 @@
         appSubMenuItem.app = app;
         [appSubMenuItem setTarget:self];
         [appSubMenuItem setAction:@selector(revealInFinderTouched:)];
-        appSubMenuItem.title = app.appName?:@"";
+        appSubMenuItem.title = [NSString stringWithFormat:@"%@(%@)",app.appName,app.deviceName];
         [self appOprationMenu:appSubMenuItem];
         [self.statusItem.menu insertItem:appSubMenuItem atIndex:0];
     }

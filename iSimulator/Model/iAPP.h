@@ -13,6 +13,9 @@
 @property (copy,nonatomic) NSString *appBundlePath;
 @property (copy,nonatomic) NSString *appSandBoxPath;
 
+@property (copy,nonatomic) NSString *deviceName;
+@property (copy,nonatomic) NSString *deviceVersion;
+
 @property (copy,nonatomic) NSString *bundleID;
 @property (copy,nonatomic) NSString *UUID;
 @property (copy,nonatomic) NSString *version;
