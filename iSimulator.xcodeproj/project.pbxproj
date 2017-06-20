@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B80E3DE21EF915B100765EFA /* LetsMove.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B80E3DE11EF915B100765EFA /* LetsMove.framework */; };
+		B80E3DE31EF915DA00765EFA /* LetsMove.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B80E3DE11EF915B100765EFA /* LetsMove.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B82A91411E5C005C00D195AA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B82A91401E5C005C00D195AA /* AppDelegate.m */; };
 		B82A91441E5C005C00D195AA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B82A91431E5C005C00D195AA /* main.m */; };
 		B82A91461E5C005C00D195AA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B82A91451E5C005C00D195AA /* Assets.xcassets */; };
@@ -22,8 +24,6 @@
 		B87BE1B31E5FBAA300656B28 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B87BE1B21E5FBAA300656B28 /* Assets.xcassets */; };
 		B87BE1B61E5FBAA300656B28 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = B87BE1B41E5FBAA300656B28 /* MainMenu.xib */; };
 		B87BE1BC1E5FBB5300656B28 /* iSimulatorHelper.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = B87BE1AA1E5FBAA300656B28 /* iSimulatorHelper.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		B89E9FD71E65663900BB210F /* LetsMove.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B89E9FD61E65663900BB210F /* LetsMove.framework */; };
-		B89E9FD91E65663C00BB210F /* LetsMove.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B89E9FD61E65663900BB210F /* LetsMove.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B89E9FDE1E65671B00BB210F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B89E9FE01E65671B00BB210F /* Localizable.strings */; };
 		B89E9FED1E656B4200BB210F /* MoveApplication.strings in Resources */ = {isa = PBXBuildFile; fileRef = B89E9FEF1E656B4200BB210F /* MoveApplication.strings */; };
 		B8A1DDE21E5C05CC00765FD6 /* iSimulator@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B8A1DDE11E5C05CC00765FD6 /* iSimulator@2x.png */; };
@@ -58,7 +58,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				B89E9FD91E65663C00BB210F /* LetsMove.framework in Embed Frameworks */,
+				B80E3DE31EF915DA00765EFA /* LetsMove.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -66,6 +66,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		B80E3DE11EF915B100765EFA /* LetsMove.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = LetsMove.framework; sourceTree = "<group>"; };
 		B82A913C1E5C005C00D195AA /* iSimulator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iSimulator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B82A91401E5C005C00D195AA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		B82A91431E5C005C00D195AA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -90,7 +91,6 @@
 		B87BE1B21E5FBAA300656B28 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B87BE1B51E5FBAA300656B28 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		B87BE1B71E5FBAA300656B28 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B89E9FD61E65663900BB210F /* LetsMove.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LetsMove.framework; path = /Users/runlin/Desktop/iSimulator/iSimulator/Vendor/LetsMove.framework; sourceTree = "<absolute>"; };
 		B89E9FDB1E65670300BB210F /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/MainMenu.strings"; sourceTree = "<group>"; };
 		B89E9FDF1E65671B00BB210F /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B89E9FE11E65671D00BB210F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -129,7 +129,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B87BE1A51E5FB99900656B28 /* ServiceManagement.framework in Frameworks */,
-				B89E9FD71E65663900BB210F /* LetsMove.framework in Frameworks */,
+				B80E3DE21EF915B100765EFA /* LetsMove.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -255,6 +255,7 @@
 		B89E9FD51E65663900BB210F /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				B80E3DE11EF915B100765EFA /* LetsMove.framework */,
 				B89E9FEF1E656B4200BB210F /* MoveApplication.strings */,
 			);
 			path = Vendor;
