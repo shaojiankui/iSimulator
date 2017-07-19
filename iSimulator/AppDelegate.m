@@ -38,7 +38,7 @@
 }
 - (void)addBottomMennu{
     [self.statusItem.menu addItem:[NSMenuItem separatorItem]];
-    NSMenuItem *aboutItem  = [[NSMenuItem alloc] initWithTitle:@"About iSimulators" action:@selector(aboutItemTouched:) keyEquivalent:@"a"];
+    NSMenuItem *aboutItem  = [[NSMenuItem alloc] initWithTitle:@"About iSimulator" action:@selector(aboutItemTouched:) keyEquivalent:@"a"];
     aboutItem.target = self;
     [self.statusItem.menu addItem:aboutItem];
     
@@ -47,7 +47,7 @@
     [self.statusItem.menu addItem:preferencesItem];
     
     [self.statusItem.menu addItem:[NSMenuItem separatorItem]];
-    NSMenuItem *exitItem  = [[NSMenuItem alloc] initWithTitle:@"Quit iSimulators" action:@selector(exitItemTouched:) keyEquivalent:@"q"];
+    NSMenuItem *exitItem  = [[NSMenuItem alloc] initWithTitle:@"Quit iSimulator" action:@selector(exitItemTouched:) keyEquivalent:@"q"];
     exitItem.target = self;
     [self.statusItem.menu addItem:exitItem];
     [self.mainMenu addItem:[NSMenuItem separatorItem]];
